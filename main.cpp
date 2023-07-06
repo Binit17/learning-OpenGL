@@ -1,4 +1,4 @@
-#include "glad/glad.h"
+#include "glad/glad.h" //be sure to include file for GLAD before other header files that require OpenGl like GLFW
 #include <GLFW/glfw3.h>
 
 #include <iostream>
@@ -37,6 +37,7 @@ int main()
 
     // glad: load all OpenGL function pointers
     // ---------------------------------------
+    //previously we mentioned that GLAD manages function pointers for OpenGL so we want to initialize GLAD before we call any OpenGL function.
     if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
     {
         std::cout << "Failed to initialize GLAD" << std::endl;
@@ -45,6 +46,7 @@ int main()
 
     // render loop
     // -----------
+    //we don't want the window to close as soon as it opens, so we use this under while loop.
     while (!glfwWindowShouldClose(window))
     {
         // input
@@ -76,7 +78,7 @@ void processInput(GLFWwindow *window)
         glfwSetWindowShouldClose(window, true);
 }
 
-// glfw: whenever the window size changed (by OS or user resize) this callback function executes
+// glfw: whenever the window size changed (by OS or user resize) this callback function executes and fills in the proper arguments for you to process.
 // ---------------------------------------------------------------------------------------------
 void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 {
